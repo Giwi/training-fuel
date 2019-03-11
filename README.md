@@ -14,7 +14,7 @@ http://127.0.0.1:8080/api/v0/update
 
 # Practice
 
-1. Gazole price in Blagnac during november 2017
+1. Gazole price in whatever during november 2017
 2. Mean price by station
 3. Global average
 4. Mean of the last available diesel fuel prices in France

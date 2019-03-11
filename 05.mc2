@@ -5,9 +5,9 @@
   'data.fuel' { 'type' 'gazole' }
   NOW -1
 ]
-FETCH  'gts' STORE
-
-'POLYGON ((1.30 43.39, 1.37 43.69, 1.31 43.57, 1.51 43.55, 1.30 43.39))' 0.01 false GEO.WKT 'geozone' STORE
+FETCH  'gts' STORE 
+'POLYGON ((-4.560135 48.301816, -4.560435 48.459353, -4.396476 48.474767, -4.257324 48.271512, -4.560135 48.301816))'
+ 0.01 false GEO.WKT 'geozone' STORE
 
 [
   $gts               // GTS list
