@@ -1,0 +1,16 @@
+// @endpoint https://warp.cityzendata.net/api/v0
+@training/dataset1
+[ 
+  $TOKEN
+  '~.*' 
+  { 'cp' '31700' 'type' 'gazole' } 
+  '2017-11-01T00:00:00.000000Z' 
+  '2017-11-30T23:59:59.999999Z'
+] FETCH 'gts' STORE
+[ 
+  $gts            // gts list from fetch
+  bucketizer.mean // average computing
+  NOW             // align all buckets  
+  0               // bucket span auto  
+  1               // number of buckets
+] BUCKETIZE

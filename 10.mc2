@@ -1,0 +1,44 @@
+// @endpoint https://warp.cityzendata.net/api/v0
+@training/dataset1
+'POLYGON ((1.30 43.39, 1.37 43.69, 1.31 43.57, 1.51 43.55, 1.30 43.39))' 0.01 false GEO.WKT
+GEO.REGEXP '~(' SWAP + ')' +
+'regexp' STORE
+
+$TOKEN AUTHENTICATE 1000000 MAXOPS
+
+[ $TOKEN 'data.fuel' { 'type' 'gazole' 'loc' $regexp } NOW -1 ] FETCH 'data' STORE
+$data
+NOW ISO8601
+'2017-09-01T00:00:00.000000Z'
+TIMECLIP
+NONEMPTY
+
+[ SWAP 
+  <%
+    // Extract lat + lon
+    [ 3 7 ] SUBLIST FLATTEN DUP
+    [ 1 2 ] SUBLIST LIST-> DROP
+    43.620 1.38
+    HAVERSINE 'dist' STORE
+    <% $dist 10000.0 > %>
+    <% NULL 4 SET %> // put null if too far
+    IFT
+  %> MACROMAPPER 0 0 0 
+] MAP NONEMPTY 
+
+[ SWAP 
+  bucketizer.min
+  0
+  31536000000000
+  0
+] BUCKETIZE
+
+[ SWAP
+  []
+  reducer.min
+] REDUCE
+
+// Get station value and its metadata (Name of the station)
+LIST-> DROP [ SWAP LOCATIONS ] FLATTEN LIST-> DROP ->HHCODE 'hfilter' STORE
+[ $data [ ] { 'loc' $hfilter } filter.byattr ] FILTER
+[ SWAP mapper.tostring 0 0 0 ] MAP

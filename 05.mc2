@@ -1,0 +1,33 @@
+// @endpoint https://warp.cityzendata.net/api/v0
+@training/dataset1
+[ 
+  $TOKEN
+  'data.fuel' { 'type' 'gazole' }
+  NOW -1
+]
+FETCH  'gts' STORE
+
+'POLYGON ((1.30 43.39, 1.37 43.69, 1.31 43.57, 1.51 43.55, 1.30 43.39))' 0.01 false GEO.WKT 'geozone' STORE
+
+[
+  $gts               // GTS list
+  $geozone           // from GEO.WKT
+  mapper.geo.within  // keep inner points 
+  0                  // pre
+  0                  // post
+  0                  // occurences
+] MAP NONEMPTY   'gts' STORE
+
+[ 
+  $gts 
+  bucketizer.min
+  NOW
+  0
+  1
+] BUCKETIZE
+
+[ SWAP
+// mean fuel price for all stations
+[]           // use all labels
+reducer.mean // mean function
+] REDUCE       // execute reducer
