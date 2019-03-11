@@ -1,4 +1,4 @@
-// @endpoint https://warp.cityzendata.net/api/v0
+// @endpoint https://warp.cityzendata.net/api/v0/exec
 @training/dataset1
 
 'POLYGON ((1.30 43.39, 1.37 43.69, 1.31 43.57, 1.51 43.55, 1.30 43.39))' 0.01 false GEO.WKT
