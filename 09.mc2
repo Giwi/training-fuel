@@ -1,10 +1,10 @@
-// @endpoint https://warp.cityzendata.net/api/v0/exec
+// @endpoint https://warp.senx.io/api/v0/exec
 @training/dataset1
 'POLYGON ((-4.560135 48.301816, -4.560435 48.459353, -4.396476 48.474767, -4.257324 48.271512, -4.560135 48.301816))' 0.01 false GEO.WKT
 GEO.REGEXP '~(' SWAP + ')' +
 'regexp' STORE
 
-$TOKEN AUTHENTICATE 1000000 MAXOPS
+// $TOKEN AUTHENTICATE 1000000 MAXOPS
 
 [ $TOKEN 'data.fuel' { 'type' 'gazole' 'loc' $regexp } NOW -1 ] FETCH 'data' STORE
 $data
@@ -16,21 +16,22 @@ NONEMPTY
 [ SWAP 
   <%
     // Extract lat + lon
-    [ 3 7 ] SUBLIST FLATTEN DUP
-    [ 1 2 ] SUBLIST LIST-> DROP
-    48.406879 -4.418599
-    HAVERSINE 'dist' STORE
-    <% $dist 10000.0 > %>
-    <% NULL 4 SET %> // put null if too far
+    
+    [ 3 7 ] SUBLIST FLATTEN DUP 
+    [ 1 2 ] SUBLIST  LIST-> DROP 
+    48.406879 -4.418599 
+    HAVERSINE  'dist' STORE
+    <% $dist 5000.0 > %>
+    <%  NULL 4 SET  %> // put null if too far
     IFT
   %> MACROMAPPER 0 0 0 
-] MAP NONEMPTY 
+] MAP  NONEMPTY 
 
 [ SWAP 
   bucketizer.min
+  NOW
   0
-  31536000000000
-  0
+  1
 ] BUCKETIZE
 
 [ SWAP

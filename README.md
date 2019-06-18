@@ -2,6 +2,10 @@
 
     sudo ./warp10-standalone.sh bootstrap
 
+https://www.prix-carburants.gouv.fr/rubrique/opendata/
+
+
+Usage: groovy convert.groovy PrixCarburants_xxx.xml
 
 update limits
 
@@ -14,7 +18,7 @@ http://127.0.0.1:8080/api/v0/update
 
 # Practice
 
-1. Gazole price in whatever during november 2017
+1. Gazole price in whatever during november 2018
 2. Mean price by station
 3. Global average
 4. Mean of the last available diesel fuel prices in France

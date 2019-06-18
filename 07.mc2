@@ -1,21 +1,22 @@
-// @endpoint https://warp.cityzendata.net/api/v0/exec
+// @endpoint https://warp.senx.io/api/v0/exec
 @training/dataset1
 
 'POLYGON ((-4.560135 48.301816, -4.560435 48.459353, -4.396476 48.474767, -4.257324 48.271512, -4.560135 48.301816))' 0.01 false GEO.WKT
-GEO.REGEXP '~(' SWAP + ')' +
+GEO.REGEXP  '~(' SWAP + ')' + 
 'regexp' STORE
-$TOKEN AUTHENTICATE 1000000 MAXOPS
-[ $TOKEN 'data.fuel' { 'type' 'gazole' 'loc' $regexp } NOW -1 ] FETCH 'data' STORE
+[ $TOKEN 'data.fuel' { 'type' 'gazole' 'loc' $regexp }
+ NOW -1 ] FETCH 
+'data' STORE
 $data
-
+NOW 30 d TIMECLIP NONEMPTY
 [ SWAP 
   bucketizer.min
+  NOW
   0
-  31536000000000
-  0
+  1
 ] BUCKETIZE
 
 [ SWAP
   []
-  reducer.min TIMEC
+  reducer.min 
 ] REDUCE

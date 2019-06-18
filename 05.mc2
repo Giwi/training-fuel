@@ -1,4 +1,4 @@
-// @endpoint https://warp.cityzendata.net/api/v0/exec
+// @endpoint https://warp.senx.io/api/v0/exec
 @training/dataset1
 [ 
   $TOKEN
@@ -6,6 +6,8 @@
   NOW -1
 ]
 FETCH  'gts' STORE 
+
+
 'POLYGON ((-4.560135 48.301816, -4.560435 48.459353, -4.396476 48.474767, -4.257324 48.271512, -4.560135 48.301816))'
  0.01 false GEO.WKT 'geozone' STORE
 
@@ -16,7 +18,8 @@ FETCH  'gts' STORE
   0                  // pre
   0                  // post
   0                  // occurences
-] MAP NONEMPTY   'gts' STORE
+] MAP NONEMPTY 
+NOW 30 d TIMECLIP NONEMPTY 'gts' STORE 
 
 [ 
   $gts 
@@ -29,5 +32,5 @@ FETCH  'gts' STORE
 [ SWAP
 // mean fuel price for all stations
 []           // use all labels
-reducer.mean // mean function
+reducer.min // mean function
 ] REDUCE       // execute reducer
