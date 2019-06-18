@@ -4,6 +4,9 @@
 
 https://www.prix-carburants.gouv.fr/rubrique/opendata/
 
+- Draw WKT : https://clydedacruz.github.io/openstreetmap-wkt-playground/
+- Draw/convert WKT/geoJson http://dev.openlayers.org/examples/vector-formats.html
+
 
 Usage: groovy convert.groovy PrixCarburants_xxx.xml
 
