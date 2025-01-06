@@ -1,15 +1,15 @@
-// @endpoint https://warp.senx.io/api/v0/exec
-'cJcNULymJ3gADtJkxwvmncdsSV1llN6iCSAkJZayFn4OE3I3zAqvjEH6M15akpo9Qq5lo.fo3fHZBOrvZ6ZKaYfxK3HayNA_eo3ELMdDveFvvgaWj7EyUAYp2UTuifLojYv5NhIkkNlW4akfBnuwFjWBq.T5KMJR' 'read' STORE
-'um2QWjPvKcN5Tdkr3qnGFE.39L9V3M.z7RnMIm8nvCApV3S8jAPh7nUCoeLRzu_KnQj.vMCdWUdE6vURQZPc5qsem8U_aHlfX.9s1Y_7MKzy_fCjuJsWj6fnhai8WVWE' 'write' STORE
+// @endpoint https://warpcloud.senx.io/api/v0/exec
+'FseTAVvmD_lUuRFKt86e1HBKaPw0pLr9.JGA8iELFRiiRBFnYIFpyhNxNhG7feIA19BGU0K8eIZHg0HSCbKZRf2yI0cwZKTSV_xpwzNADFgg8D82AjIsZKkY5f7Ize0.FpseQ8WgaBy.N0guRn.WiV' 'read' STORE
+'_UQ3kMixazvftKs19UMq2r4E69PJIZnmVlPb8FTbhaaV4TEnqUpWzD6PKPw.NJe3CkP7j.euyf7vix6rSAuBMV3q4AVUjtH52lS3bpB0EMQCdbJB2V9KE3ppG72FeGabEb3rKq9vaFVamXUGZqPFJF' 'write' STORE
 
 
-$read AUTHENTICATE 10000000 MAXOPS
-
-[ $read 'data.fuel' { } NOW -1 ] FETCH
+ //$read AUTHENTICATE 10000000 MAXOPS
+ 'alJRuILLOjIQ3Vnr4HCgk9hk_YCmMhQGvJR6ZBRXPjMBp8jY6Lh60dKqh8xaBjyZSP8YvRu3YYEi6vMKQcfmqsknFIknaoqt2P9LxodxJE7DJH_Ix0S3f43KOQd2B9h5urTQM9zr7ZNRFvokex5nvk.pYdZQK63mHl_K8LIX8YjcaMTje5qTgTW8ZedlXIVV8kVkkL8tTV1S7kL_68FZSF'
+ CAPADD
+10000000 MAXOPS
+[ $read 'data.fuel' {} NOW -1 ] FETCH
 
 <%
-  // Remove list index
-  DROP
   // Duplicate the GTS
   DUP
   [ SWAP <%
@@ -24,6 +24,6 @@ $read AUTHENTICATE 10000000 MAXOPS
     %> MACROMAPPER 0 0 0 ] MAP
     // Discard mapped GTS as we do not need it
     DROP
-%> LMAP
+%> F LMAP
 $write
 META

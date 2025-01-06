@@ -1,6 +1,6 @@
 import java.text.SimpleDateFormat 
 import java.util.Date
-
+import groovy.xml.*;
 //
 // Usage: groovy convert.groovy PrixCarburants_xxx.xml
 //
