@@ -6,7 +6,7 @@ https://www.prix-carburants.gouv.fr/rubrique/opendata/
 
 - Draw WKT : https://clydedacruz.github.io/openstreetmap-wkt-playground/
 - Draw/convert WKT/geoJson http://dev.openlayers.org/examples/vector-formats.html
-
+- DRAW geoJSON : https://geojson.io
 
 Usage: groovy convert.groovy PrixCarburants_xxx.xml
 
@@ -15,8 +15,8 @@ update limits
     sudo ./warp10-standalone.init start
 
 # Data upload
-http://127.0.0.1:8080/api/v0/update 
-     curl  -H 'X-Warp10-Token: JIPV8eK36OAddyDdDWLN1uy21hIla27_Sfk_yHOZ_O.HI2gmuAmIArP45Y7WG6n8MVdp9aMVcGPucloHH6qQXlvJnWg8VXLPoHssooQux3U.8eyjfq8jc.VuMrPKqCEI' http://127.0.0.1:8080/api/v0/update --data-binary @data
+
+    time curl --ciphers DEFAULT@SECLEVEL=1 -X POST  -H 'X-Warp10-Token: xxxx' https://warpcloud.senx.io/api/v0/update --data-binary @data.gts
 
 
 # Practice
