@@ -91,7 +91,7 @@ xml.pdv.each { pdv ->
     }
 
     def date = sdf.parse(prix.@maj.text())   
-    def fuelValue =  Double.parseDouble(prix.@valeur.text()) / 1000
+    def fuelValue =  Double.parseDouble(prix.@valeur.text())
     def  fuelType = prix.@nom.text().trim().toLowerCase()
     
     StringBuilder sb = new StringBuilder()
